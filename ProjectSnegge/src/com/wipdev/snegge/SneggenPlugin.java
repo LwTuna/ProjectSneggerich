@@ -37,7 +37,7 @@ public class SneggenPlugin extends JavaPlugin{
 	 * 
 	 * (non-Javadoc)
 	 * @see org.bukkit.plugin.java.JavaPlugin#onDisable()
-	 */
+	 */ 
 	@Override
 	public void onDisable() {
 		PermissionSystem.save();
