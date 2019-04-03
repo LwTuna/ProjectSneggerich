@@ -9,6 +9,7 @@ public class SneggenPlugin extends JavaPlugin{
 		
 		
 		
+		
 	}
 	
 	public void onDisable() {
