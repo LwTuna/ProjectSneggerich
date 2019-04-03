@@ -6,6 +6,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="lib/spigot-api-1.13.2-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/jars/spigot-api-1.13.2-R0.1-SNAPSHOT.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="https://hub.spigotmc.org/javadocs/spigot/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
