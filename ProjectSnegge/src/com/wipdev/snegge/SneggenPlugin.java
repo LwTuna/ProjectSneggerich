@@ -32,6 +32,7 @@ public class SneggenPlugin extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new JoinEventHandler(), this);
 	}
 	/**
+	 * Called when exiting the Plugin/Server
 	 * saves the Permission from runtime
 	 * 
 	 * (non-Javadoc)
