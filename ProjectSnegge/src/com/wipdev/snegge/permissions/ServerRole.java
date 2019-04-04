@@ -40,5 +40,11 @@ public enum ServerRole {
 		return prefix;
 	}
 	
+	public static ServerRole getById(int id) {
+	    for(ServerRole e : values()) {
+	        if(e.getId() == id) return e;
+	    }
+	    return DEFAULT_USER;
+	}
 	
 }

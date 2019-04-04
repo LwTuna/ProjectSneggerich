@@ -13,6 +13,9 @@ import com.wipdev.snegge.playerStart.JoinEventHandler;
  * @version 0.0.1
  */
 public class SneggenPlugin extends JavaPlugin{
+	
+	public static final String folerPath = "/SneggenPlugin";
+	
 	/**
 	 * initalize the permission system
 	 * add EventHandlers to the plugin
@@ -40,7 +43,10 @@ public class SneggenPlugin extends JavaPlugin{
 	 */ 
 	@Override
 	public void onDisable() {
-		PermissionSystem.save();
+		save();
 	}
 	
+	private void save() {
+		PermissionSystem.save();
+	}
 }
