@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.wipdev.snegge.chat.ChatEventHandler;
 import com.wipdev.snegge.permissions.PermissionSystem;
 import com.wipdev.snegge.playerStart.JoinEventHandler;
+import com.wipdev.snegge.world.BlockEventHandler;
 /**
  * Entry point for the Plugin
  * Initalizing and Saving everything here
@@ -30,7 +31,7 @@ public class SneggenPlugin extends JavaPlugin{
 		getLogger().info("Finished loading permissions");
 		
 		
-		
+		getServer().getPluginManager().registerEvents(new BlockEventHandler(), this);
 		getServer().getPluginManager().registerEvents(new ChatEventHandler(), this);
 		getServer().getPluginManager().registerEvents(new JoinEventHandler(), this);
 	}

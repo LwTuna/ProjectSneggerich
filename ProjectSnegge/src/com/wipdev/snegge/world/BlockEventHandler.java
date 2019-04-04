@@ -2,21 +2,23 @@ package com.wipdev.snegge.world;
 
 import java.util.Collection;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.wipdev.snegge.permissions.PermissionSystem;
 import com.wipdev.snegge.permissions.ServerRole;
 
-public class BlockBreakHandler implements Listener{
+public class BlockEventHandler implements Listener{
 
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e){
-		if(PermissionSystem.getPermissionsOfPlayer(e.getPlayer()) >= ServerRole.ADMIN.getId()) {
+		if(PermissionSystem.getPermissionsOfPlayer(e.getPlayer()) >= ServerRole.ADMIN.getId() && e.getPlayer().getGameMode() == GameMode.CREATIVE) {
 			return;
 		}
 		Block block = e.getBlock();
@@ -33,4 +35,11 @@ public class BlockBreakHandler implements Listener{
 		e.setCancelled(true);
 	}
 	
+	@EventHandler
+	public void onBlockBreak(BlockPlaceEvent e){
+		if(PermissionSystem.getPermissionsOfPlayer(e.getPlayer()) >= ServerRole.ADMIN.getId() && e.getPlayer().getGameMode() == GameMode.CREATIVE) {
+			return;
+		}
+		e.setCancelled(true);
+	}
 }
