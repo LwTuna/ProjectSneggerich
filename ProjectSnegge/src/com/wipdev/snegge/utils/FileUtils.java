@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
 public class FileUtils {
 
 	public static File loadFile(String path) {
@@ -35,6 +37,9 @@ public class FileUtils {
 		}
 	}
 	
+	public static boolean exists(String path) {
+		return new File(path).exists();
+	}
 	public static List<String> readLinesFormFile(File file){
 		List<String> lines = new ArrayList<String>();
 		try {
@@ -52,6 +57,23 @@ public class FileUtils {
 		return lines;
 	}
 	
+	public static String convertListToString(List<String> list) {
+		StringBuilder sb = new StringBuilder();
+		for(String s : list) {
+			sb.append(s);
+		}
+		return sb.toString();
+	}
+	
+	public static String loadStringFromFile(String path) {
+		File file = new File(path);
+		if(!file.exists()) {
+			return "";
+		}else {
+			return convertListToString(readLinesFormFile(file));
+		}
+	}
+	
 	public static File saveStringToFile(String data,File file) {
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
@@ -61,6 +83,17 @@ public class FileUtils {
 			e.printStackTrace();
 		}
 		return file;
+	}
+	
+	public static JSONObject loadJsonObjectFromFile(String path) {
+		return new JSONObject(loadStringFromFile(path));
+	}
+	
+	public static void saveJsonObjectToFile(JSONObject obj,String path) {
+		if(!exists(path)) {
+			createNewFile(path);
+		}
+		saveStringToFile(obj.toString(), loadFile(path));
 	}
 	
 }
