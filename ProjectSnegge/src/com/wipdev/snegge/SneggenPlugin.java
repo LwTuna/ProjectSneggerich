@@ -31,7 +31,7 @@ public class SneggenPlugin extends JavaPlugin{
 		getLogger().info("Finished loading permissions");
 		
 		
-		getServer().getPluginManager().registerEvents(new BlockEventHandler(), this);
+		getServer().getPluginManager().registerEvents(new BlockEventHandler(this), this);
 		getServer().getPluginManager().registerEvents(new ChatEventHandler(), this);
 		getServer().getPluginManager().registerEvents(new JoinEventHandler(), this);
 	}
