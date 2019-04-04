@@ -38,7 +38,7 @@ public class ChatEventHandler implements Listener{
 	 * @return The final assembled message to broadcast
 	 */
 	private String assembleMessage(String message,Player player) {
-		return getPrefix(player)+getCustomNickname(player)+" : "+getChatColor(player)+ChatColor.stripColor(message);
+		return getPrefix(player)+" "+getChatColor(player)+getCustomNickname(player)+" :"+ChatColor.stripColor(message);
 	}
 	
 	/**
