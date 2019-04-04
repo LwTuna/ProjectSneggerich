@@ -13,7 +13,11 @@ import org.bukkit.inventory.ItemStack;
 
 import com.wipdev.snegge.permissions.PermissionSystem;
 import com.wipdev.snegge.permissions.ServerRole;
-
+/**
+ * TODO Set ores to respawnable
+ * @author Jonas
+ *
+ */
 public class BlockEventHandler implements Listener{
 
 	@EventHandler
