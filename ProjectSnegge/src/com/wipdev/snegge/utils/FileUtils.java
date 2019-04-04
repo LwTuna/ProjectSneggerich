@@ -15,6 +15,7 @@ import org.json.JSONObject;
 public class FileUtils {
 
 	public static File loadFile(String path) {
+		
 		return new File(path);
 	}
 	
@@ -29,6 +30,10 @@ public class FileUtils {
 			return false;
 		}else {
 			try {
+				if(!file.getParentFile().exists()) {
+					file.getParentFile().mkdirs();
+					
+				}
 				file.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -66,7 +71,7 @@ public class FileUtils {
 	}
 	
 	public static String loadStringFromFile(String path) {
-		File file = new File(path);
+		File file = loadFile(path);
 		if(!file.exists()) {
 			return "";
 		}else {
@@ -86,7 +91,11 @@ public class FileUtils {
 	}
 	
 	public static JSONObject loadJsonObjectFromFile(String path) {
-		return new JSONObject(loadStringFromFile(path));
+		String s = loadStringFromFile(path);
+		if(s.isEmpty()|| s == null) {
+			return new JSONObject();
+		}
+		return new JSONObject(s);
 	}
 	
 	public static void saveJsonObjectToFile(JSONObject obj,String path) {

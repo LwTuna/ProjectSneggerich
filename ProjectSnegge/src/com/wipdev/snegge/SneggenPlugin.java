@@ -14,7 +14,7 @@ import com.wipdev.snegge.playerStart.JoinEventHandler;
  */
 public class SneggenPlugin extends JavaPlugin{
 	
-	public static final String folerPath = "/SneggenPlugin";
+	public static final String folerPath = "plugins/SneggenPlugin";
 	
 	/**
 	 * initalize the permission system
@@ -27,7 +27,7 @@ public class SneggenPlugin extends JavaPlugin{
 	public void onEnable() {
 		getLogger().info("Snegge am Starten...");
 		PermissionSystem.init();
-		 
+		getLogger().info("Finished loading permissions");
 		
 		
 		

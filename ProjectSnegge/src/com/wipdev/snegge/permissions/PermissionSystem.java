@@ -27,6 +27,10 @@ public final class PermissionSystem {
 	 * TODO load the file/db to put in values^^
 	 */
 	public static void init() {
+		if(!FileUtils.exists(filepath)) {
+			FileUtils.createNewFile(filepath);
+			return;
+		}
 		JSONObject obj = FileUtils.loadJsonObjectFromFile(filepath);
 		JSONArray array = obj.getJSONArray("list");
 		for(int i = 0;i<array.length();i++) {
