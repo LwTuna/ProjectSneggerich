@@ -54,7 +54,6 @@ public class SneggenPlugin extends JavaPlugin{
 	
 	@Override
 	public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
-		getLogger().info("SAO");
 	    return new SAOChunkGenerator();
 	}
 	
