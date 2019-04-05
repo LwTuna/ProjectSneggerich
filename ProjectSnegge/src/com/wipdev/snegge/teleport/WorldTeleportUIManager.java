@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.wipdev.snegge.SneggenPlugin;
 import com.wipdev.snegge.items.ItemUtils;
 
 public class WorldTeleportUIManager implements Listener{
@@ -27,7 +28,7 @@ public class WorldTeleportUIManager implements Listener{
 		if(event.getPlayer().getInventory().getItemInMainHand() != null) {
 			if(event.getPlayer().getInventory().getItemInMainHand().getType() == Material.COMPASS) {
 				Inventory inv = Bukkit.createInventory(null, 27, "Teleport");
-				for(int i=1;i<=5;i++) {
+				for(int i=1;i<=SneggenPlugin.worldamt;i++) {
 					inv.setItem(i-1, ItemUtils.createItem(Material.DIRT,1,"Floor "+i));
 				}
 				event.getPlayer().openInventory(inv);

@@ -24,7 +24,7 @@ import com.wipdev.snegge.world.SAOChunkGenerator;
 public class SneggenPlugin extends JavaPlugin{
 	
 	public static final String folerPath = "plugins/SneggenPlugin";
-	
+	public static int worldamt = 5;
 	/**
 	 * initalize the permission system
 	 * add EventHandlers to the plugin
@@ -42,13 +42,12 @@ public class SneggenPlugin extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new BlockEventHandler(this), this);
 		getServer().getPluginManager().registerEvents(new ChatEventHandler(this), this);
 		getServer().getPluginManager().registerEvents(new JoinEventHandler(), this);
-		for(int i=1;i<=5;i++) {
-			if(Bukkit.getWorld("floor"+i) ==null) {
-				WorldCreator wc = new WorldCreator("floor"+i);
-				wc.generator(new SAOChunkGenerator());
-				getServer().createWorld(wc);
-			}
+		for(int i=1;i<=worldamt;i++) {
+			WorldCreator wc = new WorldCreator("floor"+i);
+			wc.generator(new SAOChunkGenerator());
+			getServer().createWorld(wc);
 		}
+		
 	
 	}
 	
