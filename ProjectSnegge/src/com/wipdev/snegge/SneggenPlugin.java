@@ -3,6 +3,7 @@ package com.wipdev.snegge;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.wipdev.snegge.chat.ChatEventHandler;
@@ -38,6 +39,8 @@ public class SneggenPlugin extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new ChatEventHandler(), this);
 		getServer().getPluginManager().registerEvents(new JoinEventHandler(), this);
 	}
+	
+	
 	/**
 	 * Called when exiting the Plugin/Server
 	 * saves the Permission from runtime
