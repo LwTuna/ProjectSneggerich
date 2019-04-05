@@ -1,6 +1,8 @@
 package com.wipdev.snegge.playerStart;
 
-import org.bukkit.Bukkit;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +17,11 @@ import com.wipdev.snegge.permissions.ServerRole;
  */
 public class JoinEventHandler implements Listener{
 
+	private static List<String> sneggenFacts = new ArrayList<String>();
+	public JoinEventHandler() {
+		sneggenFacts.add("Die Größte Snegge der Welt ist 200m groß");
+	}
+	
 	/**
 	 * Handles the PlayerJoinEvent
 	 * prints custom join messege wheter the player is new to the server ot not
@@ -29,7 +36,7 @@ public class JoinEventHandler implements Listener{
 			PermissionSystem.addPlayer(e.getPlayer(), ServerRole.DEFAULT_USER);
 			e.setJoinMessage(ChatColor.LIGHT_PURPLE+e.getPlayer().getName()+" has joined for the first Time on the Server.");
 		}
-		
+		e.getPlayer().sendMessage("Did you know : "+sneggenFacts.get((int) Math.random()*sneggenFacts.size()));
 		
 	}
 	
