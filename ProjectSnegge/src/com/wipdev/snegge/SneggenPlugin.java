@@ -10,6 +10,7 @@ import com.wipdev.snegge.chat.ChatEventHandler;
 import com.wipdev.snegge.permissions.PermissionSystem;
 import com.wipdev.snegge.playerStart.JoinEventHandler;
 import com.wipdev.snegge.world.BlockEventHandler;
+import com.wipdev.snegge.world.SAOChunkGenerator;
 /**
  * Entry point for the Plugin
  * Initalizing and Saving everything here
@@ -40,6 +41,12 @@ public class SneggenPlugin extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new JoinEventHandler(), this);
 	}
 	
+	
+	@Override
+	public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
+		getLogger().info("SAO");
+	    return new SAOChunkGenerator();
+	}
 	
 	/**
 	 * Called when exiting the Plugin/Server

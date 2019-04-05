@@ -1,9 +1,9 @@
 package com.wipdev.snegge.world;
 
-import java.rmi.activation.ActivationGroupDesc.CommandEnvironment;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -62,7 +62,7 @@ public class BlockEventHandler implements Listener{
 				public void run() {
 					loc.getBlock().setType(m);
 				}
-			},oreRespawnCooldown.get(mat));
+			},oreRespawnCooldown.get(mat)/100);
 	        
 		}
 		e.setCancelled(true);
@@ -76,4 +76,5 @@ public class BlockEventHandler implements Listener{
 		}
 		e.setCancelled(true);
 	}
+	 
 }
