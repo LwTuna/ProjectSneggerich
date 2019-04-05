@@ -30,9 +30,7 @@ public class JoinEventHandler implements Listener{
 			e.setJoinMessage(ChatColor.LIGHT_PURPLE+e.getPlayer().getName()+" has joined for the first Time on the Server.");
 		}
 		
-		if(e.getPlayer().getWorld().equals(Bukkit.getWorld("world"))) {
-			
-		}
+		
 	}
 	
 	
