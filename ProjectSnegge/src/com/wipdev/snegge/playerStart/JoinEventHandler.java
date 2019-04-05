@@ -1,5 +1,6 @@
 package com.wipdev.snegge.playerStart;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,6 +28,10 @@ public class JoinEventHandler implements Listener{
 		}else {
 			PermissionSystem.addPlayer(e.getPlayer(), ServerRole.DEFAULT_USER);
 			e.setJoinMessage(ChatColor.LIGHT_PURPLE+e.getPlayer().getName()+" has joined for the first Time on the Server.");
+		}
+		
+		if(e.getPlayer().getWorld().equals(Bukkit.getWorld("world"))) {
+			
 		}
 	}
 	

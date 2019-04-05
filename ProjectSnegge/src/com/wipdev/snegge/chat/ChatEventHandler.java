@@ -2,11 +2,13 @@ package com.wipdev.snegge.chat;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import com.wipdev.snegge.permissions.PermissionSystem;
 /**
@@ -19,13 +21,20 @@ import com.wipdev.snegge.permissions.PermissionSystem;
  */
 public class ChatEventHandler implements Listener{
 
+	private JavaPlugin plugin;
 	
+	
+	public ChatEventHandler(JavaPlugin plugin) {
+		this.plugin = plugin;
+	}
+
 	/**
 	 * Redo the Chat messages(Add prefix chatcolor nickname etc.)
 	 * @param ce Information about the chat event
 	 */
 	@EventHandler
-	public void onChatEvent(AsyncPlayerChatEvent ce){
+	public void onChatEvent(final AsyncPlayerChatEvent ce){
+		
 		ce.setCancelled(true);
 		Bukkit.broadcastMessage(assembleMessage(ce.getMessage(), ce.getPlayer()));
 		
