@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 
 public abstract class BasicRace {
@@ -20,7 +21,7 @@ public abstract class BasicRace {
 		this.permEffects = permEffects;
 	}
 	
-	public abstract void onAbility();
+	public abstract void onAbility(PlayerInteractEvent event);
 	
 	
 	public void applyEffects(Player player) {

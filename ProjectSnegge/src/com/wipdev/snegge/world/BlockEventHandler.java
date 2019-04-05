@@ -50,7 +50,7 @@ public class BlockEventHandler implements Listener{
 		final Material mat = block.getType();
 		if(mat.equals(Material.COAL_ORE) ||mat.equals(Material.IRON_ORE) || mat.equals(Material.GOLD_ORE) ||mat.equals(Material.REDSTONE_ORE) ||
 				mat.equals(Material.LAPIS_ORE) ||mat.equals(Material.EMERALD_ORE) || mat.equals(Material.DIAMOND_ORE)) {
-			Collection<ItemStack> drops = e.getBlock().getDrops(e.getPlayer().getItemInHand());
+			Collection<ItemStack> drops = e.getBlock().getDrops(e.getPlayer().getInventory().getItemInMainHand());
 		    
 	        for (ItemStack drop : drops) {
 	            e.getPlayer().getInventory().addItem(drop);

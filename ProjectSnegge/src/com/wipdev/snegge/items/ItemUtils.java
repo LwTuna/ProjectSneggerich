@@ -71,4 +71,8 @@ public class ItemUtils {
 		is.setItemMeta(im);
 		return is;
 	}
+	
+	public static ItemStack copy(ItemStack item) {
+		return new ItemStack(item);
+	}
 }
