@@ -27,6 +27,7 @@ public class WorldTeleportUIManager implements Listener{
 	public void onCompassUse(PlayerInteractEvent event) {
 		if(event.getPlayer().getInventory().getItemInMainHand() != null) {
 			if(event.getPlayer().getInventory().getItemInMainHand().getType() == Material.COMPASS) {
+				
 				Inventory inv = Bukkit.createInventory(null, 27, "Teleport");
 				for(int i=1;i<=SneggenPlugin.worldamt;i++) {
 					inv.setItem(i-1, ItemUtils.createItem(Material.DIRT,1,"Floor "+i));

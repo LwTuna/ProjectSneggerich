@@ -42,14 +42,15 @@ public class SneggenPlugin extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new BlockEventHandler(this), this);
 		getServer().getPluginManager().registerEvents(new ChatEventHandler(this), this);
 		getServer().getPluginManager().registerEvents(new JoinEventHandler(), this);
+		
 		for(int i=1;i<=worldamt;i++) {
 			WorldCreator wc = new WorldCreator("floor"+i);
 			wc.generator(new SAOChunkGenerator());
 			getServer().createWorld(wc);
 		}
-		
 	
 	}
+	
 	
 	
 	@Override
