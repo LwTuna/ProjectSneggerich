@@ -1,16 +1,20 @@
 package com.wipdev.snegge.chat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.wipdev.snegge.commands.CommandSystem;
 import com.wipdev.snegge.permissions.PermissionSystem;
+import com.wipdev.snegge.permissions.ServerRole;
 /**
  * A Listener for the PlayerChatEvent 
  * Redoning the whole message system adding the prefixes for roles and classes in chat
@@ -22,10 +26,13 @@ import com.wipdev.snegge.permissions.PermissionSystem;
 public class ChatEventHandler implements Listener{
 
 	private JavaPlugin plugin;
+	private List<Player> vanished = new ArrayList<Player>();
+	private CommandSystem system ;
 	
 	
 	public ChatEventHandler(JavaPlugin plugin) {
 		this.plugin = plugin;
+		system = new CommandSystem(plugin);
 	}
 
 	/**
@@ -34,12 +41,23 @@ public class ChatEventHandler implements Listener{
 	 */
 	@EventHandler
 	public void onChatEvent(final AsyncPlayerChatEvent ce){
+		if(ce.getMessage().startsWith("..")) {
+			handleCommand(ce);
+		}else {
+			ce.setCancelled(true);
+			Bukkit.broadcastMessage(assembleMessage(ce.getMessage(), ce.getPlayer()));
+		}
 		
-		ce.setCancelled(true);
-		Bukkit.broadcastMessage(assembleMessage(ce.getMessage(), ce.getPlayer()));
 		
 	}
 	
+	private void handleCommand(final AsyncPlayerChatEvent ce) {
+		ce.setCancelled(true);
+		
+		system.handleCommand(ce.getMessage(), ce.getPlayer());
+		
+	}
+
 	/**
 	 * Assembles the message with their role prefix,nickname,their chatcolor and the actual message
 	 * 

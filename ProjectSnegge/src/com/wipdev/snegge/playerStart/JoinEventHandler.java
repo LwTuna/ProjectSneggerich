@@ -20,6 +20,12 @@ public class JoinEventHandler implements Listener{
 	private static List<String> sneggenFacts = new ArrayList<String>();
 	public JoinEventHandler() {
 		sneggenFacts.add("Die Größte Snegge der Welt ist 200m groß");
+		sneggenFacts.add("Nacktsneggen legen wie Fögel Eierund bauen Nester. Nur net so weit oben!");
+		sneggenFacts.add("Es gibt viele Arten von Nacktsneggen. Zum Beispiel die Tiegersnegge und halt noch übel viele.");
+		sneggenFacts.add("Nacktsneggen bilden kleine Tiergemeinschaften. Der bekannteste ist UniCredirt Banking.");
+		sneggenFacts.add("Nacknseggen sind im Durschnitte zwischen 10 und 20 cm groß");
+		sneggenFacts.add("Nacktsneggen können nicht lesen. Die scheiß Wixxer");
+		sneggenFacts.add("In der westlichen Welt gilt du Snegge als Beleidigung wegen ihrer Langsamigkeit. Aber die schnellste Snegge der Welt, also die ist schon ziemlich krass.");
 	}
 	
 	/**
@@ -36,7 +42,8 @@ public class JoinEventHandler implements Listener{
 			PermissionSystem.addPlayer(e.getPlayer(), ServerRole.DEFAULT_USER);
 			e.setJoinMessage(ChatColor.LIGHT_PURPLE+e.getPlayer().getName()+" has joined for the first Time on the Server.");
 		}
-		e.getPlayer().sendMessage("Did you know : "+sneggenFacts.get((int) Math.random()*sneggenFacts.size()));
+		e.getPlayer().sendMessage(sneggenFacts.get((int) Math.random()*sneggenFacts.size()));
+		
 		
 	}
 	
