@@ -1,10 +1,12 @@
 package com.wipdev.snegge.races; 
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -12,14 +14,30 @@ import com.wipdev.snegge.items.ItemUtils;
 
 public class ElfRace extends Race{
 
-	public ElfRace() {
+	private final int stealthDuration=5;
+	private JavaPlugin plugin;
+	
+	public ElfRace(JavaPlugin plugin) {
 		super("Elf", ChatColor.LIGHT_PURPLE+"[Elf]",ItemUtils.createItem(Material.BOW, 1, "[Elf]"));
+		this.plugin = plugin;
 	}
 
 	@Override
-	public void onAbility(PlayerInteractEvent event) {
+	public void onAbility(final PlayerInteractEvent event) {
 		event.getPlayer().getWorld().playEffect(event.getPlayer().getLocation(),Effect.SMOKE,2);
-		event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
+		event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, stealthDuration, 1));
+		for(Player pl:event.getPlayer().getWorld().getPlayers()) {
+			pl.hidePlayer(plugin,event.getPlayer());
+		}
+		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			
+			public void run() {
+				for(Player pl:event.getPlayer().getWorld().getPlayers()) {
+					pl.showPlayer(plugin,event.getPlayer());
+				}
+				
+			}
+		}, stealthDuration*20);
 	}
 
 	@Override

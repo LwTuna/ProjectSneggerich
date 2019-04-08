@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -22,7 +23,7 @@ public class RaceManager {
 	private static final String filePath = SneggenPlugin.folerPath+"/races/save.txt";
 	
 	
-	public static final List<Race> races = Arrays.asList(new Race[] {new TestRace(),new DwarfRace(),new ElfRace()});
+	public static final List<Race> races = Arrays.asList(new Race[] {new TestRace(),new DwarfRace(),new ElfRace(SneggenPlugin.instance)});
 	
 	public static void init() {
 		if(!FileUtils.exists(filePath)) {

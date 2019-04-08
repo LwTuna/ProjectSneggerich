@@ -26,6 +26,8 @@ public class SneggenPlugin extends JavaPlugin{
 	
 	public static final String folerPath = "plugins/SneggenPlugin";
 	public static int worldamt = 6;
+	public static JavaPlugin instance;
+	
 	/**
 	 * initalize the permission system
 	 * add EventHandlers to the plugin
@@ -35,7 +37,7 @@ public class SneggenPlugin extends JavaPlugin{
 	 */
 	@Override
 	public void onEnable() {
-		
+		instance = this;
 		getLogger().info("Snegge am Starten...");
 		PermissionSystem.init();
 		RaceManager.init();
