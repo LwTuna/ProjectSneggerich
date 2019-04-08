@@ -53,7 +53,7 @@ public class AbilityHandler implements Listener{
 		if(canUseAbility(event.getPlayer())) {
 			race.onAbility(event);
 			setCooldown(event.getPlayer());
-			event.getPlayer().sendMessage(ChatColor.GREEN+"You have used ur ability!");
+			event.getPlayer().sendMessage(ChatColor.GREEN+"You have used your ability!");
 		}else {
 			event.getPlayer().sendMessage(ChatColor.RED+"You can't use your ability yet. Remaining cooldown :"+getRemainingCooldown(event.getPlayer()));
 		}
@@ -107,6 +107,7 @@ public class AbilityHandler implements Listener{
 						pl.showPlayer(plugin,damager);
 					}
 					event.setDamage(event.getDamage() * ElfRace.DAMGAGE_STEALTH_MULTIPLIER);
+					damager.sendMessage(ChatColor.GREEN+"You are now Visible!");
 				}
 			}
 		}

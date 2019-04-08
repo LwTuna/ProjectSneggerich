@@ -41,8 +41,9 @@ public class ElfRace extends Race{
 					pl.showPlayer(plugin,event.getPlayer());
 				}
 				
+				
 			}
-		}, stealthDuration*20);
+		}, stealthDuration*20+5);
 	}
 
 	@Override
