@@ -19,9 +19,10 @@ public class CommandSystem {
 	
 	public CommandSystem(JavaPlugin plugin) {
 		this.plugin = plugin;
+		commands.put("rank",new RankCommand(plugin));
 		commands.put("ping", new PingCommand(plugin));
 		commands.put("help", new CommandExecutor(plugin," a list of all commands",ServerRole.DEFAULT_USER.getId()) {
-			
+		
 			@Override
 			public void onExecute(CommandContainer container) {
 				container.executor.sendMessage(assempleHelpCommand());
@@ -48,7 +49,7 @@ public class CommandSystem {
 	
 	private String assempleHelpCommand() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(ChatColor.BLUE+"*******HELP*******n");
+		builder.append(ChatColor.BLUE+"*******HELP*******\n");
 		for(Entry<String,CommandExecutor> command : commands.entrySet()) {
 			String role = ServerRole.getById(command.getValue().permissionsNeeded).getPrefix();
 			builder.append(ChatColor.WHITE+command.getKey()+": "+command.getValue().getHELP()+" "+role+"\n");

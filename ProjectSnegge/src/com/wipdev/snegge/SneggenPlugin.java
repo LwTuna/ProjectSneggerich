@@ -14,6 +14,7 @@ import com.wipdev.snegge.permissions.PermissionSystem;
 import com.wipdev.snegge.playerStart.JoinEventHandler;
 import com.wipdev.snegge.teleport.WorldTeleportUIManager;
 import com.wipdev.snegge.world.BlockEventHandler;
+import com.wipdev.snegge.world.EnvironmentEventHandler;
 import com.wipdev.snegge.world.SAOChunkGenerator;
 /**
  * Entry point for the Plugin
@@ -44,6 +45,7 @@ public class SneggenPlugin extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new ChatEventHandler(this), this);
 		getServer().getPluginManager().registerEvents(new JoinEventHandler(), this);
 		getServer().getPluginManager().registerEvents(new DisableMobSpawns(), this);
+		getServer().getPluginManager().registerEvents(new EnvironmentEventHandler(), this);
 		for(int i=1;i<=worldamt;i++) {
 			WorldCreator wc = new WorldCreator("floor"+i);
 			wc.generator(new SAOChunkGenerator());

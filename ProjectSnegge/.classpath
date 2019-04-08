@@ -11,5 +11,6 @@
 			<attribute name="javadoc_location" value="https://hub.spigotmc.org/javadocs/spigot/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/jars/json-20180813.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
