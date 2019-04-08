@@ -27,11 +27,9 @@ public class JoinEventHandler implements Listener{
 	
 	private JavaPlugin plugin;
 	
+
 	public JoinEventHandler(JavaPlugin plugin) {
 		this.plugin = plugin;
-	}
-
-	public JoinEventHandler() {
 		sneggenFacts.add("Die Größte Snegge der Welt ist 200m groß");
 		sneggenFacts.add("Nacktsneggen legen wie Fögel Eierund bauen Nester. Nur net so weit oben!");
 		sneggenFacts.add("Es gibt viele Arten von Nacktsneggen. Zum Beispiel die Tiegersnegge und halt noch übel viele.");

@@ -44,7 +44,7 @@ public class SneggenPlugin extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new WorldTeleportUIManager(this), this);
 		getServer().getPluginManager().registerEvents(new BlockEventHandler(this), this);
 		getServer().getPluginManager().registerEvents(new ChatEventHandler(this), this);
-		getServer().getPluginManager().registerEvents(new JoinEventHandler(), this);
+		getServer().getPluginManager().registerEvents(new JoinEventHandler(this), this);
 		getServer().getPluginManager().registerEvents(new DisableMobSpawns(), this);
 		getServer().getPluginManager().registerEvents(new EnvironmentEventHandler(), this);
 		getServer().getPluginManager().registerEvents(new AbilityHandler(this), this);
