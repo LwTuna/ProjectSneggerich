@@ -22,7 +22,7 @@ public class RaceManager {
 	private static final String filePath = SneggenPlugin.folerPath+"/races/save.txt";
 	
 	
-	public static final List<Race> races = Arrays.asList(new Race[] {new TestRace(),new DwarfRace()});
+	public static final List<Race> races = Arrays.asList(new Race[] {new TestRace(),new Dwarf()});
 	
 	public static void init() {
 		if(!FileUtils.exists(filePath)) {

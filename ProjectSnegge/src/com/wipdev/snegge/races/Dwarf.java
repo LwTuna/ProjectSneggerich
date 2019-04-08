@@ -10,9 +10,9 @@ import org.bukkit.potion.PotionEffectType;
 
 import com.wipdev.snegge.items.ItemUtils;
 
-public class DwarfRace extends Race{
+public class Dwarf extends Race{
 
-	public DwarfRace() {
+	public Dwarf() {
 		super("Dwarf", ChatColor.LIGHT_PURPLE+"[Dwarf]",ItemUtils.createItem(Material.IRON_PICKAXE, 1, "[Dwarf]"));
 	}
 
