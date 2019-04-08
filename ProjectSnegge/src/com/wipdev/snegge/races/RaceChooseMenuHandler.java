@@ -36,7 +36,7 @@ public class RaceChooseMenuHandler implements Listener{
 							if(item.getItemMeta().getDisplayName().equals(race.getSelectorItem().getItemMeta().getDisplayName())) {
 								RaceManager.setRace((Player)event.getWhoClicked(), race);
 								event.getWhoClicked().closeInventory();
-								event.getWhoClicked().getInventory().addItem(ItemUtils.createItem(Material.ENDER_EYE, 1, "Class Ability!"));
+								event.getWhoClicked().getInventory().addItem(ItemUtils.createItem(Material.ENDER_EYE, 1, AbilityHandler.abilityItemName));
 							}
 						}
 						
