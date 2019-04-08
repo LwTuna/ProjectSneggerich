@@ -4,9 +4,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 
 import com.wipdev.snegge.items.ItemUtils;
 
@@ -19,7 +24,8 @@ public class DwarfRace extends Race{
 	@Override
 	public void onAbility(PlayerInteractEvent event) {
 		event.getPlayer().getWorld().playEffect(event.getPlayer().getLocation(),Effect.ZOMBIE_DESTROY_DOOR,2);
-		
+		ThrownPotion potion = event.getPlayer().launchProjectile(ThrownPotion.class);
+		potion.setItem(getPotion());
 	}
 
 	@Override
@@ -28,4 +34,12 @@ public class DwarfRace extends Race{
 		
 	}
 
+	
+	private ItemStack getPotion() {
+		 ItemStack potion = new ItemStack(Material.SPLASH_POTION, 1);
+	     PotionMeta meta = (PotionMeta) potion.getItemMeta();
+	     //TODO ADD Confusion Potion effect
+	     potion.setItemMeta(meta);
+	     return potion;
+	}
 }
