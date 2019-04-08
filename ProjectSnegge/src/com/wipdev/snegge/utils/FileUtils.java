@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONObject;
-
 public class FileUtils {
 
 	public static File loadFile(String path) {
@@ -90,19 +88,6 @@ public class FileUtils {
 		return file;
 	}
 	
-	public static JSONObject loadJsonObjectFromFile(String path) {
-		String s = loadStringFromFile(path);
-		if(s.isEmpty()|| s == null) {
-			return new JSONObject();
-		}
-		return new JSONObject(s);
-	}
 	
-	public static void saveJsonObjectToFile(JSONObject obj,String path) {
-		if(!exists(path)) {
-			createNewFile(path);
-		}
-		saveStringToFile(obj.toString(), loadFile(path));
-	}
 	
 }

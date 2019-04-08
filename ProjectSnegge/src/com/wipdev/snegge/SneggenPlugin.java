@@ -32,6 +32,7 @@ public class SneggenPlugin extends JavaPlugin{
 	 */
 	@Override
 	public void onEnable() {
+		
 		getLogger().info("Snegge am Starten...");
 		PermissionSystem.init();
 		getLogger().info("Finished loading permissions");

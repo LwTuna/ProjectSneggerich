@@ -1,12 +1,11 @@
 package com.wipdev.snegge.permissions;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.bukkit.entity.Player;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import com.wipdev.snegge.SneggenPlugin;
 import com.wipdev.snegge.utils.FileUtils;
@@ -31,12 +30,14 @@ public final class PermissionSystem {
 			FileUtils.createNewFile(filepath);
 			return;
 		}
-		JSONObject obj = FileUtils.loadJsonObjectFromFile(filepath);
-		JSONArray array = obj.getJSONArray("list");
-		for(int i = 0;i<array.length();i++) {
-			JSONObject entry = array.getJSONObject(i);
 		
-			roles.put(entry.getString("uuid"), ServerRole.getById(entry.getInt("role")));
+		List<String> lines = FileUtils.readLinesFormFile(FileUtils.loadFile(filepath));
+		
+		for(String line : lines) {
+			String[] splited = line.split("\\s+");
+			if(splited.length<=1)
+				continue;
+			roles.put(splited[0], ServerRole.getById(Integer.parseInt(splited[1])));
 		}
 		
 	}
@@ -46,17 +47,13 @@ public final class PermissionSystem {
 	 *
 	 */
 	public static void save() {
-		JSONObject obj = new JSONObject();
-		JSONArray array = new JSONArray();
+		StringBuilder builder = new StringBuilder();
 		
 		for(Entry<String,ServerRole> entry : roles.entrySet()) {
-			JSONObject jsonentry = new JSONObject();
-			jsonentry.put("uuid", entry.getKey());
-			jsonentry.put("role", entry.getValue().getId());
-			array.put(jsonentry);
+			builder.append(entry.getKey()+" "+entry.getValue().id+"\n");
 		}
-		obj.put("list",array);
-		FileUtils.saveJsonObjectToFile(obj, filepath);
+		
+		FileUtils.saveStringToFile(builder.toString(), FileUtils.loadFile(filepath));
 	}
 	
 	/**
