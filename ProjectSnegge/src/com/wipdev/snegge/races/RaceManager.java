@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 import org.bukkit.entity.Player;
 
 import com.wipdev.snegge.SneggenPlugin;
-import com.wipdev.snegge.permissions.ServerRole;
 import com.wipdev.snegge.utils.FileUtils;
 
 public class RaceManager {
@@ -66,11 +65,22 @@ public class RaceManager {
 	}
 	
 	public static void setRace(Player player,Race race) {
-		if(!hasRole(player)) {
+		if(!hasRace(player)) {
 			loaded.put(player.getUniqueId().toString(), race);
+			player.sendMessage("You have choosen the Race : "+race.getChatPrefix());
+			race.applyPermEffects(player);
+		}else {
+			player.sendMessage("You have already choosen a class!");
 		}
 	}
-	public static boolean hasRole(Player player) {
+	
+	public static boolean hasRace(Player player) {
 		return loaded.containsKey(player.getUniqueId().toString());
+	}
+
+	public static void applyEffect(Player player) {
+		if(hasRace(player)) {
+			getRace(player).applyPermEffects(player);
+		}
 	}
 }

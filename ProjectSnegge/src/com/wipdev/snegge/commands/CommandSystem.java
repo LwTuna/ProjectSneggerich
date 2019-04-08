@@ -23,6 +23,7 @@ public class CommandSystem {
 		commands.put("ping", new PingCommand(plugin));
 		commands.put("tp", new TeleportCommand(plugin));
 		commands.put("teleport", new TeleportCommand(plugin));
+		commands.put("race", new RaceCommand(plugin));
 		commands.put("help", new CommandExecutor(plugin," a list of all commands",ServerRole.DEFAULT_USER.getId()) {
 		
 			@Override

@@ -9,6 +9,7 @@ import com.wipdev.snegge.mobs.DisableMobSpawns;
 import com.wipdev.snegge.permissions.PermissionSystem;
 import com.wipdev.snegge.playerStart.JoinEventHandler;
 import com.wipdev.snegge.races.AbilityHandler;
+import com.wipdev.snegge.races.RaceChooseMenuHandler;
 import com.wipdev.snegge.races.RaceManager;
 import com.wipdev.snegge.teleport.WorldTeleportUIManager;
 import com.wipdev.snegge.world.BlockEventHandler;
@@ -46,7 +47,8 @@ public class SneggenPlugin extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new JoinEventHandler(), this);
 		getServer().getPluginManager().registerEvents(new DisableMobSpawns(), this);
 		getServer().getPluginManager().registerEvents(new EnvironmentEventHandler(), this);
-		getServer().getPluginManager().registerEvents(new AbilityHandler(), this);
+		getServer().getPluginManager().registerEvents(new AbilityHandler(this), this);
+		getServer().getPluginManager().registerEvents(new RaceChooseMenuHandler(), this);
 		for(int i=1;i<=worldamt;i++) {
 			WorldCreator wc = new WorldCreator("floor"+i);
 			wc.generator(new SAOChunkGenerator());

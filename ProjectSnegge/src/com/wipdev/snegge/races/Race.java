@@ -1,11 +1,8 @@
 package com.wipdev.snegge.races;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.potion.PotionEffect;
+import org.bukkit.inventory.ItemStack;
 
 public abstract class Race {
 	
@@ -14,12 +11,14 @@ public abstract class Race {
 	private int id;
 	private String raceName;
 	private String chatPrefix;
+	private ItemStack selectorItem;
 	
-	public Race(String raceName, String chatPrefix) {
+	public Race(String raceName, String chatPrefix,ItemStack selectorItem) {
 		this.id = nextID;
 		nextID++;
 		this.raceName = raceName;
 		this.chatPrefix = chatPrefix;
+		this.selectorItem = selectorItem;
 	}
 	
 	public abstract void onAbility(PlayerInteractEvent event);
@@ -37,6 +36,10 @@ public abstract class Race {
 
 	public String getChatPrefix() {
 		return chatPrefix;
+	}
+
+	public ItemStack getSelectorItem() {
+		return selectorItem;
 	}
 	
 	
