@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,7 +13,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.wipdev.snegge.commands.CommandSystem;
 import com.wipdev.snegge.permissions.PermissionSystem;
-import com.wipdev.snegge.permissions.ServerRole;
 /**
  * A Listener for the PlayerChatEvent 
  * Redoning the whole message system adding the prefixes for roles and classes in chat
