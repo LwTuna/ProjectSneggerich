@@ -1,13 +1,16 @@
 package com.wipdev.snegge.races;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,6 +21,8 @@ public class AbilityHandler implements Listener{
 	private JavaPlugin plugin;
 	
 	public static final String abilityItemName = "Class Ability!";
+	
+	private Map<String,Long> lastAbilityUse = new HashMap<String,Long>();
 	
 	public AbilityHandler(JavaPlugin plugin) {
 		this.plugin = plugin;
@@ -44,9 +49,40 @@ public class AbilityHandler implements Listener{
 			event.getPlayer().sendMessage("You have to choose a race first!");
 			return;
 		}
-		race.onAbility(event);
+		
+		if(canUseAbility(event.getPlayer())) {
+			race.onAbility(event);
+			setCooldown(event.getPlayer());
+			event.getPlayer().sendMessage(ChatColor.GREEN+"You have used ur ability!");
+		}else {
+			event.getPlayer().sendMessage(ChatColor.RED+"You can't use your ability yet. Remaining cooldown :"+getRemainingCooldown(event.getPlayer()));
+		}
+		
 	}
 	
+	private void setCooldown(Player player) {
+		lastAbilityUse.put(player.getUniqueId().toString(), System.currentTimeMillis());
+	}
+	private int getRemainingCooldown(Player player) {
+		if(!lastAbilityUse.containsKey(player.getUniqueId().toString())){
+			return 0;
+		}else {
+			long last = lastAbilityUse.get(player.getUniqueId().toString());
+			long diff = System.currentTimeMillis() -last;
+			int secondsPassed =  (int) (diff /1000);
+			Race race = RaceManager.getRace(player);
+			return race.getCooldown() - secondsPassed;
+			
+		}
+	}
+	private boolean canUseAbility(Player player) {
+		if(!lastAbilityUse.containsKey(player.getUniqueId().toString())) {
+			return true;
+		}else {
+			return getRemainingCooldown(player)<=0;
+		}
+	}
+
 	@EventHandler
 	public void onPlayerRespawn(final PlayerRespawnEvent event) {
 		if(RaceManager.hasRace(event.getPlayer())) {

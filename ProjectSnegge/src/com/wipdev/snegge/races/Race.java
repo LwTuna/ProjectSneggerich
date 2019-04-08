@@ -12,13 +12,15 @@ public abstract class Race {
 	private String raceName;
 	private String chatPrefix;
 	private ItemStack selectorItem;
+	private final int cooldown;
 	
-	public Race(String raceName, String chatPrefix,ItemStack selectorItem) {
+	public Race(String raceName, String chatPrefix,ItemStack selectorItem,int cooldown) {
 		this.id = nextID;
 		nextID++;
 		this.raceName = raceName;
 		this.chatPrefix = chatPrefix;
 		this.selectorItem = selectorItem;
+		this.cooldown = cooldown;
 	}
 	
 	public abstract void onAbility(PlayerInteractEvent event);
@@ -40,6 +42,10 @@ public abstract class Race {
 
 	public ItemStack getSelectorItem() {
 		return selectorItem;
+	}
+
+	public int getCooldown() {
+		return cooldown;
 	}
 	
 	

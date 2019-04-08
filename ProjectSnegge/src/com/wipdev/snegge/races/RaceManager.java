@@ -24,7 +24,7 @@ public class RaceManager {
 	
 	public static int ELF_RACE_ID;
 	
-	public static final List<Race> races = Arrays.asList(new Race[] {new TestRace(),new DwarfRace(),new ElfRace(SneggenPlugin.instance)});
+	public static final List<Race> races = Arrays.asList(new Race[] {new DwarfRace(),new ElfRace(SneggenPlugin.instance)});
 	
 	public static void init() {
 		if(!FileUtils.exists(filePath)) {
