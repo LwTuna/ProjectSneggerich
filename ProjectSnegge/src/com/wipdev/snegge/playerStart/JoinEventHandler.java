@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import com.wipdev.snegge.permissions.PermissionSystem;
 import com.wipdev.snegge.permissions.ServerRole;
+import com.wipdev.snegge.races.RaceChooseMenuHandler;
+import com.wipdev.snegge.races.RaceManager;
 /**
  * A event Handler to ahdnle Player Join Events
  * @author Jonas
@@ -19,6 +24,13 @@ import com.wipdev.snegge.permissions.ServerRole;
 public class JoinEventHandler implements Listener{
 
 	private static List<String> sneggenFacts = new ArrayList<String>();
+	
+	private JavaPlugin plugin;
+	
+	public JoinEventHandler(JavaPlugin plugin) {
+		this.plugin = plugin;
+	}
+
 	public JoinEventHandler() {
 		sneggenFacts.add("Die Größte Snegge der Welt ist 200m groß");
 		sneggenFacts.add("Nacktsneggen legen wie Fögel Eierund bauen Nester. Nur net so weit oben!");
@@ -36,7 +48,7 @@ public class JoinEventHandler implements Listener{
 	 * @param e the data about the join event
 	 */
 	@EventHandler
-	public void onJoin(PlayerJoinEvent e) {
+	public void onJoin(final PlayerJoinEvent e) {
 		if(PermissionSystem.playerExist(e.getPlayer())) {
 			e.setJoinMessage(PermissionSystem.getServerRole(e.getPlayer()).getPrefix()+" "+e.getPlayer().getDisplayName()+" joined the Server.");
 		}else {
@@ -47,6 +59,16 @@ public class JoinEventHandler implements Listener{
 		Random random = new Random();
 		int factId = random.nextInt(sneggenFacts.size());
 		e.getPlayer().sendMessage(sneggenFacts.get(factId));
+		
+		if(!RaceManager.hasRace(e.getPlayer())) {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+				
+				public void run() {
+					RaceChooseMenuHandler.openInventory(e.getPlayer());
+					
+				}
+			}, 60);
+		}
 		
 		
 	}

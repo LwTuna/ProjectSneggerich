@@ -7,8 +7,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import com.wipdev.snegge.SneggenPlugin;
+import com.wipdev.snegge.permissions.PermissionSystem;
+import com.wipdev.snegge.permissions.ServerRole;
 import com.wipdev.snegge.utils.FileUtils;
 
 public class RaceManager {
@@ -65,14 +69,26 @@ public class RaceManager {
 	}
 	
 	public static void setRace(Player player,Race race) {
-		if(!hasRace(player)) {
-			loaded.put(player.getUniqueId().toString(), race);
-			player.sendMessage("You have choosen the Race : "+race.getChatPrefix());
-			race.applyPermEffects(player);
+		if(PermissionSystem.getPermissionsOfPlayer(player)>=ServerRole.ADMIN.getId()) {
+				loaded.put(player.getUniqueId().toString(), race);
+				player.sendMessage("You have choosen the Race : "+race.getChatPrefix());
+				for(PotionEffect effect : player.getActivePotionEffects())
+				{
+				    player.removePotionEffect(effect.getType());
+				}
+				race.applyPermEffects(player);
 		}else {
-			player.sendMessage("You have already choosen a class!");
+			if(!hasRace(player)) {
+				loaded.put(player.getUniqueId().toString(), race);
+				player.sendMessage("You have choosen the Race : "+race.getChatPrefix());
+				race.applyPermEffects(player);
+			}else {
+				player.sendMessage("You have already choosen a class!");
+			}
 		}
 	}
+	
+	
 	
 	public static boolean hasRace(Player player) {
 		return loaded.containsKey(player.getUniqueId().toString());
