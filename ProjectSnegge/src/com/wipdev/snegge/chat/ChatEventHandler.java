@@ -13,6 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.wipdev.snegge.commands.CommandSystem;
 import com.wipdev.snegge.permissions.PermissionSystem;
+import com.wipdev.snegge.races.RaceManager;
 /**
  * A Listener for the PlayerChatEvent 
  * Redoning the whole message system adding the prefixes for roles and classes in chat
@@ -63,7 +64,7 @@ public class ChatEventHandler implements Listener{
 	 * @return The final assembled message to broadcast
 	 */
 	private String assembleMessage(String message,Player player) {
-		return getPrefix(player)+" "+getChatColor(player)+getCustomNickname(player)+" :"+ChatColor.stripColor(message);
+		return getPrefix(player)+" "+getChatColor(player)+getCustomNickname(player)+" : "+ChatColor.stripColor(message);
 	}
 	
 	/**
@@ -84,7 +85,13 @@ public class ChatEventHandler implements Listener{
 	 * @param player the player sending the message
 	 */
 	private String getPrefix(Player player) {
-		return PermissionSystem.getServerRole(player).getPrefix();
+		if(RaceManager.hasRace(player)) {
+			return RaceManager.getRace(player).getChatPrefix()+PermissionSystem.getServerRole(player).getPrefix();
+		}else {
+			return PermissionSystem.getServerRole(player).getPrefix();
+		}
+		
+		
 	}
 	
 	/**
