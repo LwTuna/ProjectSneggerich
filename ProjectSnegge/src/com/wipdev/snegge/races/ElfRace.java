@@ -1,4 +1,4 @@
-package com.wipdev.snegge.races;
+package com.wipdev.snegge.races; 
 
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
