@@ -13,7 +13,7 @@ public class AbilityHandler implements Listener{
 
 	private JavaPlugin plugin;
 	
-	
+	public static final String abilityItemName = "Class Ability!";
 	
 	public AbilityHandler(JavaPlugin plugin) {
 		this.plugin = plugin;
@@ -24,8 +24,10 @@ public class AbilityHandler implements Listener{
 		if(event.getPlayer().getInventory().getItemInMainHand() != null) {
 			if(event.getPlayer().getInventory().getItemInMainHand().getType() == Material.ENDER_EYE) {
 				if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-					event.setCancelled(true);
-					handleAbility(event);
+					if(event.getPlayer().getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(abilityItemName)) {
+						event.setCancelled(true);
+						handleAbility(event);
+					}
 				}
 			}
 		}
