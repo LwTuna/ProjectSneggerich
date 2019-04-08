@@ -18,7 +18,7 @@ public class DwarfRace extends Race{
 
 	@Override
 	public void onAbility(PlayerInteractEvent event) {
-		event.getPlayer().getWorld().playEffect(event.getPlayer().getLocation(),Effect.VILLAGER_PLANT_GROW,2);
+		event.getPlayer().getWorld().playEffect(event.getPlayer().getLocation(),Effect.ZOMBIE_DESTROY_DOOR,2);
 		
 	}
 
