@@ -25,8 +25,11 @@ public class ElfRace extends Race{
 	@Override
 	public void onAbility(final PlayerInteractEvent event) {
 		event.getPlayer().getWorld().playEffect(event.getPlayer().getLocation(),Effect.SMOKE,2);
-		event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, stealthDuration, 1));
+		event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, stealthDuration*20, 1));
 		for(Player pl:event.getPlayer().getWorld().getPlayers()) {
+			if(pl.equals(event.getPlayer())) {
+				continue;
+			}
 			pl.hidePlayer(plugin,event.getPlayer());
 		}
 		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
@@ -42,8 +45,8 @@ public class ElfRace extends Race{
 
 	@Override
 	public void applyPermEffects(Player player) {
-		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 1));
-		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 0));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 0));
 		
 	}
 
