@@ -10,21 +10,21 @@ import org.bukkit.potion.PotionEffectType;
 
 import com.wipdev.snegge.items.ItemUtils;
 
-public class TestRace extends Race{
+public class DwarfRace extends Race{
 
-	public TestRace() {
+	public DwarfRace() {
 		super("Dwarf Race", ChatColor.LIGHT_PURPLE+"[Dwarf Race]",ItemUtils.createItem(Material.WHITE_WOOL, 1, "[Dwarf Race]"));
 	}
 
 	@Override
 	public void onAbility(PlayerInteractEvent event) {
-		event.getPlayer().getWorld().playEffect(event.getPlayer().getLocation(),Effect.VILLAGER_HAGGLE,2);
+		event.getPlayer().getWorld().playEffect(event.getPlayer().getLocation(),Effect.VILLAGER_PLANT_GROW,2);
 		
 	}
 
 	@Override
 	public void applyPermEffects(Player player) {
-		player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, Integer.MAX_VALUE, 1));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, Integer.MAX_VALUE, 1));
 		
 	}
 
