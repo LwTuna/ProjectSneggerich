@@ -16,10 +16,12 @@ public class ElfRace extends Race{
 
 	private final int stealthDuration=5;
 	private JavaPlugin plugin;
+	public static final double DAMGAGE_STEALTH_MULTIPLIER = 2;
 	
 	public ElfRace(JavaPlugin plugin) {
 		super("Elf", ChatColor.LIGHT_PURPLE+"[Elf]",ItemUtils.createItem(Material.BOW, 1, "[Elf]"));
 		this.plugin = plugin;
+		RaceManager.ELF_RACE_ID = id;
 	}
 
 	@Override

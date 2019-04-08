@@ -8,7 +8,7 @@ public abstract class Race {
 	
 	protected static int nextID = 1;
 	
-	private int id;
+	protected int id;
 	private String raceName;
 	private String chatPrefix;
 	private ItemStack selectorItem;
