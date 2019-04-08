@@ -8,6 +8,8 @@ import com.wipdev.snegge.chat.ChatEventHandler;
 import com.wipdev.snegge.mobs.DisableMobSpawns;
 import com.wipdev.snegge.permissions.PermissionSystem;
 import com.wipdev.snegge.playerStart.JoinEventHandler;
+import com.wipdev.snegge.races.AbilityHandler;
+import com.wipdev.snegge.races.RaceManager;
 import com.wipdev.snegge.teleport.WorldTeleportUIManager;
 import com.wipdev.snegge.world.BlockEventHandler;
 import com.wipdev.snegge.world.EnvironmentEventHandler;
@@ -22,7 +24,7 @@ import com.wipdev.snegge.world.SAOChunkGenerator;
 public class SneggenPlugin extends JavaPlugin{
 	
 	public static final String folerPath = "plugins/SneggenPlugin";
-	public static int worldamt = 5;
+	public static int worldamt = 6;
 	/**
 	 * initalize the permission system
 	 * add EventHandlers to the plugin
@@ -35,6 +37,7 @@ public class SneggenPlugin extends JavaPlugin{
 		
 		getLogger().info("Snegge am Starten...");
 		PermissionSystem.init();
+		RaceManager.init();
 		getLogger().info("Finished loading permissions");
 		
 		getServer().getPluginManager().registerEvents(new WorldTeleportUIManager(this), this);
@@ -43,6 +46,7 @@ public class SneggenPlugin extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new JoinEventHandler(), this);
 		getServer().getPluginManager().registerEvents(new DisableMobSpawns(), this);
 		getServer().getPluginManager().registerEvents(new EnvironmentEventHandler(), this);
+		getServer().getPluginManager().registerEvents(new AbilityHandler(), this);
 		for(int i=1;i<=worldamt;i++) {
 			WorldCreator wc = new WorldCreator("floor"+i);
 			wc.generator(new SAOChunkGenerator());
@@ -72,5 +76,6 @@ public class SneggenPlugin extends JavaPlugin{
 	
 	private void save() {
 		PermissionSystem.save();
+		RaceManager.save();
 	}
 }

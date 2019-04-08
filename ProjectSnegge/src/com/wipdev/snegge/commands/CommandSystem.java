@@ -21,6 +21,8 @@ public class CommandSystem {
 		this.plugin = plugin;
 		commands.put("rank",new RankCommand(plugin));
 		commands.put("ping", new PingCommand(plugin));
+		commands.put("tp", new TeleportCommand(plugin));
+		commands.put("teleport", new TeleportCommand(plugin));
 		commands.put("help", new CommandExecutor(plugin," a list of all commands",ServerRole.DEFAULT_USER.getId()) {
 		
 			@Override
@@ -39,7 +41,7 @@ public class CommandSystem {
 			if(commands.get(cont.command).hasPermissions(player)){
 				commands.get(cont.command).onExecute(cont);
 			}else {
-				player.sendMessage(ChatColor.YELLOW+"You dont have enough Permissions to do that.");
+				player.sendMessage(ChatColor.YELLOW+"You do have enough Permissions to NOT do that.");
 			}
 			
 		}else {

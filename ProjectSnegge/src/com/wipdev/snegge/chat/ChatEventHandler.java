@@ -24,7 +24,6 @@ import com.wipdev.snegge.permissions.PermissionSystem;
 public class ChatEventHandler implements Listener{
 
 	private JavaPlugin plugin;
-	private List<Player> vanished = new ArrayList<Player>();
 	private CommandSystem system ;
 	
 	
@@ -97,7 +96,7 @@ public class ChatEventHandler implements Listener{
 	 */
 	private ChatColor getChatColor(Player player) {
 		
-		return ChatColor.GRAY;
+		return ChatColor.WHITE;
 	}
 	
 	

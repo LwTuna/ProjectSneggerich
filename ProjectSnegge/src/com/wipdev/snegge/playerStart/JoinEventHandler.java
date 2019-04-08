@@ -2,6 +2,7 @@ package com.wipdev.snegge.playerStart;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -40,9 +41,12 @@ public class JoinEventHandler implements Listener{
 			e.setJoinMessage(PermissionSystem.getServerRole(e.getPlayer()).getPrefix()+" "+e.getPlayer().getDisplayName()+" joined the Server.");
 		}else {
 			PermissionSystem.addPlayer(e.getPlayer(), ServerRole.DEFAULT_USER);
+			
 			e.setJoinMessage(ChatColor.LIGHT_PURPLE+e.getPlayer().getName()+" has joined for the first Time on the Server.");
 		}
-		e.getPlayer().sendMessage(sneggenFacts.get((int) Math.random()*sneggenFacts.size()));
+		Random random = new Random();
+		int factId = random.nextInt(sneggenFacts.size());
+		e.getPlayer().sendMessage(sneggenFacts.get(factId));
 		
 		
 	}

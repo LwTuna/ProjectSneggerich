@@ -3,6 +3,7 @@ package com.wipdev.snegge.teleport;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -26,15 +27,20 @@ public class WorldTeleportUIManager implements Listener{
 	public void onCompassUse(PlayerInteractEvent event) {
 		if(event.getPlayer().getInventory().getItemInMainHand() != null) {
 			if(event.getPlayer().getInventory().getItemInMainHand().getType() == Material.COMPASS) {
-				
-				Inventory inv = Bukkit.createInventory(null, 27, "Teleport");
-				for(int i=1;i<=SneggenPlugin.worldamt;i++) {
-					inv.setItem(i-1, ItemUtils.createItem(Material.DIRT,1,"Floor "+i));
-				}
-				event.getPlayer().openInventory(inv);
+				createTeleportUI(event.getPlayer());
 			}
 		}
 	}
+	
+	public static void createTeleportUI(Player player) {
+		
+		Inventory inv = Bukkit.createInventory(null, 27, "Teleport");
+		for(int i=1;i<=SneggenPlugin.worldamt;i++) {
+			inv.setItem(i-1, ItemUtils.createItem(Material.DIRT,1,"Floor "+i));
+		}
+		player.openInventory(inv);
+	}
+	
 	@EventHandler
 	public void onInventoryClick(final InventoryClickEvent event) {
 		

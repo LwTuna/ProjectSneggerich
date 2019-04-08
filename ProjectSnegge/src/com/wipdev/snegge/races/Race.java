@@ -7,26 +7,25 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 
-public abstract class BasicRace {
-
+public abstract class Race {
+	
+	protected static int nextID = 1;
+	
 	private int id;
 	private String raceName;
 	private String chatPrefix;
-	private List<PotionEffect> permEffects = new ArrayList<PotionEffect>();
 	
-	public BasicRace(int id, String raceName, String chatPrefix, List<PotionEffect> permEffects) {
-		this.id = id;
+	public Race(String raceName, String chatPrefix) {
+		this.id = nextID;
+		nextID++;
 		this.raceName = raceName;
 		this.chatPrefix = chatPrefix;
-		this.permEffects = permEffects;
 	}
 	
 	public abstract void onAbility(PlayerInteractEvent event);
 	
+	public abstract void applyPermEffects(Player player);
 	
-	public void applyEffects(Player player) {
-		player.addPotionEffects(permEffects);
-	}
 
 	public int getId() {
 		return id;
