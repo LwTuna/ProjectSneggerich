@@ -1,6 +1,7 @@
 package com.wipdev.snegge.races;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,7 +18,7 @@ public class DeoldraRace extends Race{
 	private final int duration = 8;
 	
 	public DeoldraRace() {
-		super("Deoldra", "[Deoldra]", ItemUtils.createItem(Material.SHIELD, 1, "[Deoldra]"), 30);
+		super("Deoldra", ChatColor.DARK_GRAY+"[Deoldra]", ItemUtils.createItem(Material.SHIELD, 1, "[Deoldra]"), 30);
 	}
 
 	@Override
