@@ -85,6 +85,7 @@ public class AbilityHandler implements Listener{
 
 	@EventHandler
 	public void onPlayerRespawn(final PlayerRespawnEvent event) {
+		
 		if(RaceManager.hasRace(event.getPlayer())) {
 			Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 				

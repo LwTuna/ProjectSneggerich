@@ -1,6 +1,9 @@
 package com.wipdev.snegge;
 
+import org.bukkit.Bukkit;
 import org.bukkit.WorldCreator;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -56,7 +59,18 @@ public class SneggenPlugin extends JavaPlugin{
 			wc.generator(new SAOChunkGenerator());
 			getServer().createWorld(wc);
 		}
-	
+	 	
+//		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+//
+//			public void run() {
+//				Player player = Bukkit.getPlayer("PoisonBoy99");
+//				if(player == null)
+//					return;
+//				player.getWorld().spawnEntity(player.getLocation(), EntityType.PARROT);
+//				
+//			}
+//			
+//		}, 30L, 30L);
 	}
 	
 	
