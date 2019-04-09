@@ -18,7 +18,7 @@ import com.wipdev.snegge.items.ItemUtils;
 public class DwarfRace extends Race{
 
 	public DwarfRace() {
-		super("Dwarf", ChatColor.LIGHT_PURPLE+"[Dwarf]",ItemUtils.createItem(Material.IRON_PICKAXE, 1, "[Dwarf]"),30);
+		super("Dwarf", ChatColor.LIGHT_PURPLE+"[DWARF]",ItemUtils.createItem(Material.IRON_PICKAXE, 1, "[Dwarf]"),30);
 	}
 
 	@Override

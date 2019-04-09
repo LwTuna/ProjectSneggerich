@@ -18,7 +18,7 @@ public class DeoldraRace extends Race{
 	private final int duration = 8;
 	
 	public DeoldraRace() {
-		super("Deoldra", ChatColor.DARK_GRAY+"[Deoldra]", ItemUtils.createItem(Material.SHIELD, 1, "[Deoldra]"), 30);
+		super("Deoldra", ChatColor.DARK_GRAY+"[DEOLDRA]", ItemUtils.createItem(Material.SHIELD, 1, "[Deoldra]"), 30);
 	}
 
 	@Override
